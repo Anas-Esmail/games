@@ -110,18 +110,7 @@ class Crossword(object):
             if len(self.current_word_list) == 0: # this is the first word: the seed
                 # top left seed of longest word yields best results (maybe override)
                 vertical, col, row = random.randrange(0, 2), 1, 1
-                ''' 
-                # optional center seed method, slower and less keyword placement
-                if vertical:
-                    col = int(round((self.cols + 1)/2, 0))
-                    row = int(round((self.rows + 1)/2, 0)) - int(round((word.length + 1)/2, 0))
-                else:
-                    col = int(round((self.cols + 1)/2, 0)) - int(round((word.length + 1)/2, 0))
-                    row = int(round((self.rows + 1)/2, 0))
-                # completely random seed method
-                col = random.randrange(1, self.cols + 1)
-                row = random.randrange(1, self.rows + 1)
-                '''
+               
 
                 if self.check_fit_score(col, row, vertical, word): 
                     fit = True
@@ -139,11 +128,7 @@ class Crossword(object):
         return
 
     def check_fit_score(self, col, row, vertical, word):
-        '''
-        And return score (0 signifies no fit). 1 means a fit, 2+ means a cross.
-
-        The more crosses the better.
-        '''
+   
         if col < 1 or row < 1:
             return 0
 
@@ -334,7 +319,7 @@ word_list = [ "in" , "charcter use to point for inside some thing"], \
      [ "add" , "the name  of the opreator +"]
   
 
-a = Crossword(13, 13, '-', 5000, word_list)
+a = Crossword(7, 7, '-', 5000, word_list)
 a.compute_crossword(2)
 print (a.word_bank())
 print (a.solution())
@@ -343,5 +328,3 @@ print (a.display())
 print (a.legend())
 print (len(a.current_word_list), 'out of', len(word_list))
 print (a.debug)
-#end_full = float(time.time())
-#print end_full - start_full
